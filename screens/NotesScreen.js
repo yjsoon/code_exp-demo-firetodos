@@ -46,13 +46,17 @@ export default function NotesScreen({ navigation, route }) {
 
   // Load Firebase data on start
   useEffect(() => {
-    firebase
+    const unsubscribe = firebase
       .firestore()
       .collection("todos")
       .onSnapshot((collection) => {
         const updatedNotes = collection.docs.map((doc) => doc.data());
         setNotes(updatedNotes);
       });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   function addNote() {
