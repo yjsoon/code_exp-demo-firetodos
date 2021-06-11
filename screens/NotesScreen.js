@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   FlatList,
+  Button,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import firebase from "../database/firebaseDB";
@@ -29,6 +30,14 @@ export default function NotesScreen({ navigation, route }) {
             }}
           />
         </TouchableOpacity>
+      ),
+      headerLeft: () => (
+        <Button
+          onPress={() => {
+            navigation.navigate("Login");
+          }}
+          title="Login"
+        />
       ),
     });
   });
